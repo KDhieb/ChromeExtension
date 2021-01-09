@@ -1,0 +1,32 @@
+{
+  "name": "Job Posting Analysis",
+  "version": "1.0",
+  "description": "See which job is the best fit for you.",
+  "permissions": [
+    "activeTab",
+    "declarativeContent",
+    "storage"
+  ],
+  "background": {
+    "scripts": [
+      "jquery-3.5.1.slim.js",
+      "background.js"
+    ],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://careers.microsoft.com/*"
+      ],
+      "js": [
+        "jquery-3.5.1.slim.js",
+        "contentScript.js"
+      ]
+    }
+  ],
+  "page_action": {
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 2
+}
