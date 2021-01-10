@@ -1,16 +1,18 @@
 function fetchResponsibilities() {  
-  var res = Set();
+  var res = new Set();
 
-  $('body *').each(function(){
+  $('.job-description').each(function(){
     var line = $(this).text();
     line = line.replace("\n", "").trim();
     if(line)
     {
+      console.log(line);
       res.add(line);
     }
   });
+  
 
-  return res;
+  return Array.from(res).join(" ");
 }
 
 let auth_endpoint = "https://auth.emsicloud.com/connect/token"
@@ -26,7 +28,7 @@ let data = {
     scope: scope
 }
 
-function sendToEmsi() {
+function sendToEmsi(inputText) {
     let token = "";
     $.post({
         type: "POST",
@@ -39,7 +41,7 @@ function sendToEmsi() {
             token = data.access_token;
             
             let text = {
-                "text": "... Great candidates also have\n\n Experience with a particular JS MV* framework (we happen to use React)\n Experience working with databases\n Experience with AWS\n Familiarity with microservice architecture\n Familiarity with modern CSS practices, e.g. LESS, SASS, CSS-in-JS ..."
+                "text": inputText
             }
 
             $.post({
@@ -52,17 +54,21 @@ function sendToEmsi() {
                 },
                 success: function(data){
                     console.log(data);
+                    chrome.storage.local.set({'emsi': data});
                 }
             })
         }
     })
 }
 
-chrome.runtime.onMessage.addListener(
-    function(request, sender, sendResponse) {
-        if (request.message === "fetchResponsibilities") {
-            sendToEmsi();
-            sendResponse({responsibilities: fetchResponsibilities()});
-        }
+chrome.runtime.onConnect.addListener(function(port){
+  console.assert(port.name == "contentScript");
+  port.onMessage.addListener(function(request) {
+      if (request.message === "fetchResponsibilities") {
+        var text = fetchResponsibilities();
+        var emsiData = sendToEmsi(text);
+        port.postMessage({responsibilities: emsiData});
+      }
     }
-);
+  )
+});

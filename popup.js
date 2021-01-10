@@ -4,13 +4,18 @@ let requirementsTitle = document.getElementById('requirements-title');
 var li = document.createElement("li");
 var url;
 
-chrome.runtime.sendMessage({popupOpen: true});
 submit.onclick = connect;
+
+var port;
 
 function connect() {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {message: "fetchResponsibilities"}, function(response) {
+    port = chrome.tabs.connect(tabs[0].id, {name: "contentScript"});
+    port.postMessage({message: "fetchResponsibilities"});
+    port.onMessage.addListener(function(response){
       console.log(response);
     });
   });
 }
+
+
