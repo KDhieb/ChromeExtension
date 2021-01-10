@@ -25,8 +25,8 @@ function connect() {
 chrome.storage.sync.get('skills', function(data) {
   skillsTitle.innerHTML = "Skills";
   if(data.skills){
-    for(idx = 0; idx < data.skills.length; idx++) {
-      appendItem(skills, data.skills[idx].skill.name);
+    for(const skill of data.skills) {
+      appendItem(skills, skill);
     }
   }
 });

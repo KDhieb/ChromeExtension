@@ -53,8 +53,16 @@ function sendToEmsi(inputText) {
                     xhr.setRequestHeader ("Content-Type", "application/json");
                 },
                 success: function(data){
-                    console.log(data.data.skills);
-                    chrome.storage.sync.set({skills: data.data.skills});
+                  console.log(data.data.skills);
+                  var confidentSkills = [];
+                  var skillList = data.data.skills;
+                  for(const skill of skillList){
+                    if(skill['confidence'] > 0.75){
+                      confidentSkills.push(skill['skill']['name']);
+                    }
+                  }
+                  console.log(confidentSkills);
+                  chrome.storage.sync.set({skills: confidentSkills});
                 }
             })
         }
