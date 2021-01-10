@@ -72,7 +72,7 @@ script.src = "https://sdk.amazonaws.com/js/aws-sdk-2.824.0.min.js"
 // Initialize the Amazon Cognito credentials provider
 
 AWS.config.region = 'us-west-2'; 
-AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: ***REMOVED***});
+AWS.config.credentials = new AWS.CognitoIdentityCredentials({IdentityPoolId: ""});
 
 
 
