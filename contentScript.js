@@ -48,7 +48,8 @@ function sendToEmsi() {
                     xhr.setRequestHeader ("Content-Type", "application/json");
                 },
                 success: function(data){
-                    console.log(data);
+                    console.log(data.data.skills);
+                    chrome.storage.sync.set({skills: data.data.skills});
                 }
             })
         }
