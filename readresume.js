@@ -23,6 +23,7 @@ function getPageText(pageNum, PDFDocumentInstance) {
 
 
 function getText(pdf_url) {
+    const PDFJS = require("pdfjs-dist");
     PDFJS.getDocument(pdf_url).then(function (PDFDocumentInstance) {
         var totalPages = PDFDocumentInstance.pdfInfo.numPages;
         var pageNumber = 1;

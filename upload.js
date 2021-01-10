@@ -17,20 +17,26 @@
 //     alert("Your browser is too old to support HTML5 File API");
 //  }
 
-let file = document.getElementById("resume");
-
-file.onchange = showFile;
+let inputElement = document.getElementById("resume");
+inputElement.onchange = showFile;
 
 function showFile(input) {
+    let files = inputElement.files;
+    let file = files[0];
+    console.log("testing!!!")
+    console.log(file)
+
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         chrome.tabs.sendMessage(tabs[0].id, {message: "fetchresume"}, function(response) {
           requirementsTitle.innerHTML = "IT WORKS";
           console.log("PRINT SOMETHING!!!!!")
-          let file = input.file
           const reader = new FileReader();
           reader.readAsDataURL(file);
-          const fileURL = window.URL.createObjectURL(file);
-          console.log(fileURL);
+
+         console.log(file)
+        const fileURL = URL.createObjectURL(file);
+        console.log(fileURL);
+        getText(fileURL)
         })
     })
 }

@@ -1,0 +1,28 @@
+{
+  "name": "chromeextnode",
+  "version": "1.0.0",
+  "description": "NwHacks 2020 Project Submission",
+  "main": "background.js",
+  "scripts": {
+    "build": "browserify readresume.js -o bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KDhieb/ChromeExtension.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KDhieb/ChromeExtension/issues"
+  },
+  "homepage": "https://github.com/KDhieb/ChromeExtension#readme",
+  "dependencies": {
+    "browserify": "^17.0.0",
+    "pdfjs-dist": "^2.5.207"
+  },
+  "devDependencies": {
+    "webpack": "^5.12.2",
+    "webpack-cli": "^4.3.1"
+  }
+}

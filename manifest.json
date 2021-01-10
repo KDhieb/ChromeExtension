@@ -12,7 +12,8 @@
       "jquery-3.5.1.slim.js",
       "background.js",
       "upload.js",
-      "readresume.js"
+      "readresume.js",
+      "bundle.js"
     ],
     "persistent": false
   },
