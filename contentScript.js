@@ -53,8 +53,8 @@ function sendToEmsi(inputText) {
                     xhr.setRequestHeader ("Content-Type", "application/json");
                 },
                 success: function(data){
-                    console.log(data);
-                    chrome.storage.local.set({'emsi': data});
+                    console.log(data.data.skills);
+                    chrome.storage.sync.set({skills: data.data.skills});
                 }
             })
         }
@@ -67,7 +67,6 @@ chrome.runtime.onConnect.addListener(function(port){
       if (request.message === "fetchResponsibilities") {
         var text = fetchResponsibilities();
         var emsiData = sendToEmsi(text);
-        port.postMessage({responsibilities: emsiData});
       }
     }
   )
