@@ -1,13 +1,16 @@
-function fetchResponsibilities() {
-    var temp = $(".job-description .jd-info ul li").get();
-    var res = []
+function fetchResponsibilities() {  
+  var res = Set();
 
-    for (idx = 0, len = temp.length; idx < len; idx++) {
-        str = temp[idx].innerHTML;
-        res.push(str);
+  $('body *').each(function(){
+    var line = $(this).text();
+    line = line.replace("\n", "").trim();
+    if(line)
+    {
+      res.add(line);
     }
+  });
 
-    return res;
+  return res;
 }
 
 let auth_endpoint = "https://auth.emsicloud.com/connect/token"
@@ -61,9 +64,6 @@ chrome.runtime.onMessage.addListener(
         if (request.message === "fetchResponsibilities") {
             sendToEmsi();
             sendResponse({responsibilities: fetchResponsibilities()});
-        }
-        if (request.message === "extensionOpened") {
-            sendResponse({url: window.location.toString()});
         }
     }
 );
