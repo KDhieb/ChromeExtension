@@ -1,23 +1,23 @@
-function fetchResponsibilities() {
-    var temp = $(".job-description .jd-info ul li").get();
-    var res = []
+function fetchResponsibilities() {  
+  var res = Set();
 
-    for (idx = 0, len = temp.length; idx < len; idx++) {
-        str = temp[idx].innerHTML;
-        res.push(str);
+  $('body *').each(function(){
+    var line = $(this).text();
+    line = line.replace("\n", "").trim();
+    if(line)
+    {
+      res.add(line);
     }
+  });
 
-    return res;
+  return res;
 }
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       console.log(request);
       if (request.message === "fetchResponsibilities") {
-        sendResponse({responsibilities: fetchResponsibilities()});
-      }
-      if (request.message === "extensionOpened") {
-        sendResponse({url: window.location.toString()});
+        sendResponse({responsibilities: fetchResponsibilities(window.location.toString())});
       }
     }
   );
