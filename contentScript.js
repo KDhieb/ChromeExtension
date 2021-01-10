@@ -12,8 +12,12 @@ function fetchResponsibilities() {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.message == "fetchResponsibilities") {
+      console.log(request);
+      if (request.message === "fetchResponsibilities") {
         sendResponse({responsibilities: fetchResponsibilities()});
+      }
+      if (request.message === "extensionOpened") {
+        sendResponse({url: window.location.toString()});
       }
     }
   );
