@@ -5,7 +5,8 @@
   "main": "background.js",
   "scripts": {
     "build": "browserify readresume.js -o bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --open"
   },
   "repository": {
     "type": "git",
@@ -18,11 +19,14 @@
   },
   "homepage": "https://github.com/KDhieb/ChromeExtension#readme",
   "dependencies": {
+    "aws-sdk": "^2.824.0",
     "browserify": "^17.0.0",
     "pdfjs-dist": "^2.5.207"
   },
   "devDependencies": {
+    "copy-webpack-plugin": "^7.0.0",
     "webpack": "^5.12.2",
-    "webpack-cli": "^4.3.1"
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1"
   }
 }

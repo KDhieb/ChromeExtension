@@ -13,14 +13,15 @@
       "background.js",
       "upload.js",
       "readresume.js",
-      "bundle.js"
+      "bundle.js",
+      "aws-sdk-2.824.0.min.js"
     ],
     "persistent": false
   },
   "content_scripts": [
     {
       "matches": [
-        "https://careers.microsoft.com/*"
+        "*://*/*"
       ],
       "js": [
         "jquery-3.5.1.slim.js",

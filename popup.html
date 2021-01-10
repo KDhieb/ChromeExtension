@@ -14,22 +14,27 @@
     <h1>Job Posting Analysis</h1>
     <button id="submit" style="float: right; margin: 5px 0px;">Submit</button>
 
-    <h2 id="requirements-title"></h2>
-    <ul id="requirements"></div>
+    <h2 id="requirements-title"></h2> 
+    <ul id="requirements"></div> 
 
     
 
 
-    <div id="upload_resume">
       <label for="myfile">Upload your Resume:</label>
-      <input id="resume" type="file" name="myfile" onchange="showFile(this)">
-    </div>
+      <!-- <input id="resume" type="file" name="myfile" onchange="showFile()"> -->
+      <!-- <input id="resume" type="text" name="myfile""> -->
+      <input type="text" placeholder="type something..." id="myInput">
+      <button type="button" id="getTextButton">Get Value</button>
+
+
+      
+      
 
     <script src ="bundle.js"></script>
-    <script src="popup.js"></script>
     <script src="readresume.js"></script>
     <script src="upload.js"></script>
-  
+    <script src="popup.js"></script>
+
 
 
   </body>

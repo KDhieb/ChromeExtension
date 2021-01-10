@@ -1,3 +1,7 @@
+// import PDFJS from '/pdfjs-dist'
+// import { PDFJS} from './node_modules/pdfjs-dist/build';
+
+
 function getPageText(pageNum, PDFDocumentInstance) {
     // Return a Promise that is solved once the text of the page is retrieven
     return new Promise(function (resolve, reject) {
