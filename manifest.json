@@ -9,7 +9,7 @@
   ],
   "background": {
     "scripts": [
-      "jquery-3.5.1.slim.js",
+      "jquery-3.5.1.js",
       "background.js"
     ],
     "persistent": false
@@ -20,7 +20,7 @@
         "<all_urls>"
       ],
       "js": [
-        "jquery-3.5.1.slim.js",
+        "jquery-3.5.1.js",
         "contentScript.js"
       ]
     }
