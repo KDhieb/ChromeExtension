@@ -23,7 +23,7 @@ let data = {
     scope: scope
 }
 
-function sendToEmsi(sendResponse) {
+function sendToEmsi() {
     let token = "";
     $.post({
         type: "POST",
@@ -48,7 +48,7 @@ function sendToEmsi(sendResponse) {
                     xhr.setRequestHeader ("Content-Type", "application/json");
                 },
                 success: function(data){
-                    sendResponse({responsibilities: fetchResponsibilities(), skills: data});
+                    console.log(data);
                 }
             })
         }
@@ -57,8 +57,12 @@ function sendToEmsi(sendResponse) {
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      if (request.message == "fetchResponsibilities") {
-        sendToEmsi(sendResponse);
-      }
+        if (request.message === "fetchResponsibilities") {
+            sendToEmsi();
+            sendResponse({responsibilities: fetchResponsibilities()});
+        }
+        if (request.message === "extensionOpened") {
+            sendResponse({url: window.location.toString()});
+        }
     }
-  );
+);
