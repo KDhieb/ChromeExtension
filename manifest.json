@@ -10,7 +10,9 @@
   "background": {
     "scripts": [
       "jquery-3.5.1.slim.js",
-      "background.js"
+      "background.js",
+      "upload.js",
+      "readresume.js"
     ],
     "persistent": false
   },
